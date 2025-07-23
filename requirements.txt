@@ -1,0 +1,8 @@
+setuptools
+pandas
+scikit-learn
+numpy
+matplotlib
+flask
+ydata-profiling
+-e .
