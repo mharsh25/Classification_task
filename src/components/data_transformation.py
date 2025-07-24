@@ -1,6 +1,7 @@
 import sys
 import os
 from dataclasses import dataclass
+import pickle
 
 import numpy as np
 import pandas as pd
@@ -113,11 +114,17 @@ class DataTransformation:
                 file_path=self.data_tranformation_config.preprocessor_obj_file_path,
                 obj=preprocessing_obj
             )
+            with open('artifacts/label_encoder.pkl', 'wb') as f:
+                    pickle.dump(le, f)
+
+            logging.info("Saving Label Encoder file")
+
 
             return(
                 train_arr,
                 test_arr,
-                self.data_tranformation_config.preprocessor_obj_file_path,
+                self.data_tranformation_config.preprocessor_obj_file_path
+                
             )
         except Exception as e:
             raise CustomException(e,sys)

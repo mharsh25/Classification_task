@@ -1,0 +1,167 @@
+<html>
+<body>
+    <div class="login">
+       <h1>Obesity Level Classifier</h1>
+   
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h1>
+            <legend>Obesity Level Classifier</legend>
+        </h1>
+        <div class="mb-3">
+            <label class="form-label">Gender</label>
+            <select class="form-control" name="gender" placeholder="Enter you Gender" required>
+                <option class="placeholder" selected disabled value="">Select your Gender</option>
+                <option value="male">
+                    Male
+                </option>
+                <option value="female">
+                    Female
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Age</label>
+            <input class="form-control" type="number" name="age"
+                placeholder="Enter your age" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Height (in metres)</label>
+            <input class="form-control" type="number" name="height" step="any"
+                placeholder="Enter your height" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Weight</label>
+            <input class="form-control" type="number" name="weight"
+                placeholder="Enter your weight" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Family History with overweight</label>
+            <select class="form-control" name="family_history_with_overweight" placeholder="Enter you family history with overweight flag" required>
+                <option class="placeholder" selected disabled value="">Select your family_history_with_overweight</option>
+                <option value="yes">
+                    Yes
+                </option>
+                <option value="no">
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">FAVC</label>
+            <select class="form-control" name="FAVC" placeholder="Whether you eat high calorific food frequently" required>
+                <option class="placeholder" selected disabled value="">Select whether you eat high calorific food frequently</option>
+                <option value="yes">
+                    yes
+                </option>
+                <option value="no">
+                    no
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">FCVC(Whether you eat vegetables in your meal)</label>
+            <input class="form-control" type="number" name="FCVC"
+                placeholder="Enter your FCVC" min='1.0' max='3.0' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">NCP(# meals per day)</label>
+            <input class="form-control" type="number" name="NCP"
+                placeholder="Enter your NCP" min='1' max='4' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">CAEC</label>
+            <select class="form-control" name="FAVC" placeholder="Do you eat any food between meals" required>
+                <option class="placeholder" selected disabled value="">Select whether you eat any food between meals</option>
+                <option value="Sometimes">
+                    Sometimes
+                </option>
+                <option value="Frequently">
+                    Frequently
+                </option>
+                <option value="Always">
+                    Always
+                </option>
+                <option value="no">
+                    no
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">SMOKE</label>
+            <select class="form-control" name="SMOKE" placeholder="Do you smoke" required>
+                <option class="placeholder" selected disabled value="">Select whether you smoke</option>
+                <option value="yes">
+                    Yes
+                </option>
+                <option value="no">
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">CH20(Amount of water drunk every day)</label>
+            <input class="form-control" type="number" name="CH2O"
+                placeholder="Enter amount of water drunk every day" min='1.0' max='3.0' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">SCC</label>
+            <select class="form-control" name="SCC" placeholder="Do you monitor your daily calories" required>
+                <option class="placeholder" selected disabled value="">Select whether you monitor your daily calories</option>
+                <option value="yes">
+                    Yes
+                </option>
+                <option value="no">
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">FAF(Time spent on Physical activity)</label>
+            <input class="form-control" type="number" name="FAF"
+                placeholder="Enter your FAF" min='0.0' max='3.0' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">TUE(Time spent on technoligacl devices)</label>
+            <input class="form-control" type="number" name="TUE"
+                placeholder="Enter your FAF" min='0.0' max='2.0' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">CALC</label>
+            <select class="form-control" name="CALC" placeholder="How often do you drink alchohol" required>
+                <option class="placeholder" selected disabled value="">Select your frequency of drinking alchohol</option>
+                <option value="yes">
+                    Yes
+                </option>
+                <option value="no">
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">MTRANS</label>
+            <select class="form-control" name="MTRANS" placeholder="Which transport do you use" required>
+                <option class="placeholder" selected disabled value="">Select your mode of transport</option>
+                <option value="Public_Transportation">
+                    Public_Transportation
+                </option>
+                <option value="Walking">
+                    Walking
+                </option>
+                <option value="Automobile">
+                    Automobile
+                </option>
+                <option value="Two_wheeler">
+                    Two_wheeler
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict your Obesity Level" required />
+        </div>
+    
+    </form>
+    <h2>
+       THE  prediction is {{results}}
+    </h2>
+   <body>
+</html>
