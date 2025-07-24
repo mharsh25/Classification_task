@@ -26,7 +26,7 @@ class DataIngestion:
           try: 
                df=pd.read_csv('Notebooks\ObesityDataSet_raw_and_data_sinthetic.csv')
                logging.info("Read the dataset as dataframe")
-
+               df.loc[(df["MTRANS"]=="Motorbike")|(df["MTRANS"]=="Bike"),"MTRANS"]="Two_wheeler"
                os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
                df.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
 

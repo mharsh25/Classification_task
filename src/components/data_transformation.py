@@ -8,6 +8,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder,StandardScaler, LabelEncoder
+from sklearn.model_selection import train_test_split
 
 from src.exception import CustomException
 from src.logger import logging
@@ -26,6 +27,8 @@ class DataTransformation:
         This function is reponsible for data transformation
         '''
         try:
+            
+
             numerical_columns=['Age', 'Height', 'Weight', 'FCVC', 'NCP', 'CH2O', 'FAF', 'TUE']
             categorical_columns=[
                 'Gender', 'family_history_with_overweight', 'FAVC', 'CAEC', 'SMOKE',
@@ -33,7 +36,7 @@ class DataTransformation:
 
             ]
             
-            target_col=['NObeyesdad']
+            #target_col=['NObeyesdad']
 
             num_pipepine=Pipeline(
                 steps=[
@@ -46,7 +49,7 @@ class DataTransformation:
             cat_pipeline=Pipeline(
                 steps=[
                     ("imputer",SimpleImputer(strategy="most_frequent")),
-                    ("one_hot_encoder",OneHotEncoder()),
+                    ("one_hot_encoder",OneHotEncoder(handle_unknown='ignore')),
                     ("scaler",StandardScaler(with_mean=False))
                 ]
                 )
@@ -73,7 +76,7 @@ class DataTransformation:
         try:
             train_df=pd.read_csv(train_path)
             test_df=pd.read_csv(test_path)
-
+            df=pd.concat([train_df,test_df],axis=0)
             logging.info("read train and test data completed")
 
             logging.info("obtaining Preprocessing object")
@@ -81,26 +84,28 @@ class DataTransformation:
             preprocessing_obj=self.get_data_tranformer_object()
             
             target_column_name="NObeyesdad"
-            numerical_columns=['Age', 'Height', 'Weight', 'FCVC', 'NCP', 'CH2O', 'FAF', 'TUE']
-            train_df_features=train_df.loc[:,train_df.columns!=target_column_name]
-            test_df_features=test_df.loc[:,test_df.columns!=target_column_name]
-
+            #numerical_columns=['Age', 'Height', 'Weight', 'FCVC', 'NCP', 'CH2O', 'FAF', 'TUE']
+            df_features=df.loc[:,df.columns!=target_column_name]
+            #print(train_df_features.shape)
+            #print(test_df_features.shape)
             logging.info(
                     f"Applying preprocessing object on training dataframe and testing dataframe"
             )
 
             le=LabelEncoder()
-            train_arr_features=preprocessing_obj.fit_transform(train_df_features)
-            train_arr_target=le.fit_transform(train_df[target_column_name])
+            arr_features=preprocessing_obj.fit_transform(df_features)
+            arr_target=le.fit_transform(df[target_column_name])
+            
+            train_arr_features,test_arr_features,train_target_arr,test_target_arr=train_test_split(arr_features,arr_target, test_size=.2,random_state=42)
+
             train_arr=np.c_[
                 train_arr_features,
-                train_arr_target]
-
-            test_arr_featues=preprocessing_obj.fit_transform(test_df_features)
-            test_arr_target=le.fit_transform(test_df[target_column_name])
+                train_target_arr
+            ]
             test_arr=np.c_[
-                test_arr_featues,
-                test_arr_target]
+                test_arr_features,
+                test_target_arr
+            ]
             
             logging.info(f"Saved preprocessing object.")
             
