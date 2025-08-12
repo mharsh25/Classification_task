@@ -3,7 +3,7 @@
 This project is a classification task to categorize patients into one of six obesity levels. The workflow includes data ingestion, transformation, model training, and prediction, all structured in a modular way with configuration files, exception handling, and logging. A Flask frontend provides a user-friendly interface to interact with the model.
 
 ## Project Structure
-
+```
 Classification_task/
 ├── app.py
 ├── config/
@@ -29,7 +29,7 @@ Classification_task/
 ├── exception.py
 ├── utils.py
 └── requirements.txt
-
+```
 
 
 ## Features
