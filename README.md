@@ -6,29 +6,25 @@ This project is a classification task to categorize patients into one of six obe
 ```
 Classification_task/
 ├── app.py
-├── config/
-│ ├── configuration.py
-│ └── init.py
-├── constants.py
-├── data_ingestion/
-│ ├── data_ingestion.py
-│ ├── data_ingestion_config.py
-│ └── init.py
-├── data_transformation/
-│ ├── data_transformation.py
-│ ├── data_transformation_config.py
-│ └── init.py
-├── model_trainer/
-│ ├── model_trainer.py
-│ ├── model_trainer_config.py
-│ └── init.py
-├── prediction/
-│ ├── prediction.py
-│ └── init.py
-├── logger.py
-├── exception.py
-├── utils.py
-└── requirements.txt
+├── main.py
+├── my_data_report.html
+├── requirements.txt
+├── setup.py
+├── src/
+│   ├── data_ingestion.py
+│   ├── data_ingestion_config.py
+│   ├── data_transformation.py
+│   ├── data_transformation_config.py
+│   ├── model_trainer.py
+│   ├── model_trainer_config.py
+│   ├── prediction.py
+│   ├── logger.py
+│   ├── exception.py
+│   └── utils.py
+├── templates/
+│   └── index.html
+└── artifacts/
+    └── trained_model.pkl
 ```
 
 
