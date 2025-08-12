@@ -22,7 +22,8 @@ Classification_task/
 │   ├── exception.py
 │   └── utils.py
 ├── templates/
-│   └── index.html
+│   ├── home.html
+    └── index.html
 └── artifacts/
     └── trained_model.pkl
 ```
